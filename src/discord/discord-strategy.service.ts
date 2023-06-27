@@ -15,7 +15,7 @@ export class DiscordStrategyService extends PassportStrategy( Strategy ) {
             clientID: process.env.DISCORD_OAUTH_CLIENT_ID,
             clientSecret: process.env.DISCORD_OAUTH_CLIENT_SECRET,
             callbackURL: process.env.DISCORD_OAUTH_CALLBACK_URL,
-            scope: [ "identify", "email" ],
+            scope: process.env.DISCORD_OUATH_CLIENT_SCOPES.split( " " ),
         } );
     }
 
