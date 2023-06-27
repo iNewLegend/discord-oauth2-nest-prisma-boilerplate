@@ -6,7 +6,8 @@ import { IUserData } from "@internal/user/user.interface";
 @Injectable()
 
 export class UserService {
-    public constructor( private prisma: PrismaService ) {}
+    public constructor( private prisma: PrismaService ) {
+    }
 
     public async get( discordId: string ) {
         return this.prisma.user.findUnique( { where: { discordId } } );
