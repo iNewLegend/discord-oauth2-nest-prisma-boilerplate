@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { TokenService } from "@internal/token/token.service";
 import { UserService } from "@internal/user/user.service";
 
-import { ITokenData } from "@internal/token/token.interface";
+import { ITokenInputData } from "@internal/token/token.interface";
 import { IUserData } from "@internal/user/user.interface";
 
 @Injectable()
@@ -15,8 +15,8 @@ export class AuthService {
     ) {
     }
 
-    public async ensureToken( inputData: ITokenData ) {
-        const isExist = !!await this.sessionService.get( inputData.discordId );
+    public async ensureToken( inputData: ITokenInputData ) {
+        const isExist = !! await this.sessionService.get( inputData.discordId );
 
         return isExist ?
             await this.sessionService.update( inputData ) :
@@ -24,7 +24,7 @@ export class AuthService {
     }
 
     public async ensureUser( inputData: IUserData ) {
-        const isExist = !!await this.userService.get( inputData.discordId );
+        const isExist = !! await this.userService.get( inputData.discordId );
 
         return isExist ?
             await this.userService.update( inputData ) :

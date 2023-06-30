@@ -12,6 +12,7 @@ model Token {
   // ---
   accessToken  String
   refreshToken String
+  expiresAt    DateTime
   // ---
   user         User?    @relation(fields: [userId], references: [discordId])
   userId       String?  @unique
@@ -36,7 +37,9 @@ model User {
 
 model Session {
   id        String   @id @map("_id")
+  // ---
   sid       String   @unique
   data      String
+  // ---
   expiresAt DateTime
 }

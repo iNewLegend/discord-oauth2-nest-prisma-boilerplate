@@ -30,7 +30,7 @@ export class UserService {
     }
 
     private ensureAvatar( data: IUserData ) {
-        data.avatar = data.avatar ||
-            `https://cdn.discordapp.com/embed/avatars/${ data.discriminator }.png`;
+        data.avatar = data.avatar ? `https://cdn.discordapp.com/avatars/${ data.discordId }/${ data.avatar }.png` :
+            `https://cdn.discordapp.com/embed/avatars/${ data.discriminator.substring( 0, 1 ) }.png`;
     }
 }

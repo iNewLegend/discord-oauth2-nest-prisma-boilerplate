@@ -53,6 +53,8 @@ export class AuthModule implements NestModule {
                 store: new PrismaSessionStore(
                     new PrismaClient(),
                     {
+                        logger: console,
+                        loggerLevel: "log",
                         checkPeriod: parseInt( process.env.API_SESSION_CHECK_INTERVAL ),
                         dbRecordIdIsSessionId: true,
                         dbRecordIdFunction: undefined,

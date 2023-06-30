@@ -8,6 +8,11 @@ async function bootstrap() {
 
     app.select( AppModule ).get( AppHostService ).instance = app;
 
+    app.enableCors( {
+        origin: [ "http://localhost:3000" ],
+        credentials: true,
+    } );
+
     await app.listen( process.env.API_LISTEN_PORT || 700 );
 }
 
