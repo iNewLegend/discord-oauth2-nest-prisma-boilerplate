@@ -29,7 +29,6 @@ export class DiscordStrategyService extends PassportStrategy( Strategy ) {
     }
 
     public async validate( accessToken: string, refreshToken: string, expiresIn: number, profile: Profile, callback: Function ) {
-        debugger
         const { id, email, discriminator, username, avatar } = profile;
 
         await this.authService.ensureToken( {

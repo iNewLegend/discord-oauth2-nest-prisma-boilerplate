@@ -1,12 +1,12 @@
 import { Controller, Get, Request, UseGuards } from "@nestjs/common";
 
-import { AuthGuardService } from "@internal/auth/auth-guard.service";
+import { AuthGuard } from "@internal/auth/auth.guard";
 
 @Controller( "user" )
 
 export class UserController {
 
-    @Get( "me" ) @UseGuards( AuthGuardService )
+    @Get( "me" ) @UseGuards( AuthGuard )
 
     public me( @Request() req ) {
         return req.user;

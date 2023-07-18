@@ -3,16 +3,16 @@ import * as session from "express-session";
 
 import { Module, NestModule } from "@nestjs/common";
 
-import { PrismaSessionStore } from "@quixo3/prisma-session-store";
-
 import { PrismaClient } from "@prisma/client";
+
+import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 
 import { AppHostService } from "@internal/app-host.service";
 import { AuthSessionSerializeService } from "@internal/auth/auth-session-serialize.service";
-import { AuthGuardService } from "@internal/auth/auth-guard.service";
+import { AuthGuard } from "@internal/auth/auth.guard";
 import { DiscordStrategyService } from "@internal/discord/discord-strategy.service";
 
 import { AppHostModule } from "@internal/app-host.module";
@@ -24,7 +24,7 @@ import { TokenModule } from "@internal/token/token.module";
     providers: [
         DiscordStrategyService,
         AuthSessionSerializeService,
-        AuthGuardService,
+        AuthGuard,
         AuthService
     ],
     imports: [

@@ -20,6 +20,8 @@ export class AuthController {
     public async login( @Param( "code" ) code: string, @Param( "state" ) state: string, @Session() session: Record<string, any>, @Request() req ) {
         // Validate state.
         if ( state !== session.state ) {
+            delete session.state;
+
             return {
                 error: true,
                 message: "Invalid state.",
@@ -57,8 +59,6 @@ export class AuthController {
     @Get( "get" )
 
     public get( @Request() req, @Session() session: Record<string, any> ) {
-        session.state = generateRandomState();
-
         const isAuth = req.isAuthenticated();
 
         if ( isAuth ) {
@@ -66,6 +66,8 @@ export class AuthController {
                 profile: req.user,
             };
         }
+
+        session.state = generateRandomState();
 
         return {
             loginURL: this.discordStrategy.getAuthorizeUrl( session.state ),
